@@ -2,10 +2,8 @@
 import uvicorn
 from fastapi import FastAPI
 from BankNotes import BankNote
-import numpy as np
 import pickle
 import pandas as pd
-import streamlit as st
 
 # 2. Create the app object
 app = FastAPI()
@@ -13,8 +11,7 @@ pickle_in = open("model copy.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 # Ouverture des fichiers
-read_and_cache_csv = st.cache(pd.read_csv)
-df = read_and_cache_csv("X_test.csv")
+df = pd.read_csv("X_test.csv")
 
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
