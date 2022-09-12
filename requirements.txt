@@ -1,0 +1,7 @@
+uvicorn
+gunicorn
+fastapi 
+pandas 
+streamlit
+python-multipart
+torchvision
