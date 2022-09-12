@@ -19,7 +19,7 @@ df = read_and_cache_csv("X_test.csv")
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
 def index():
-    return {'message': 'Hello, World')
+    return {'message': 'Hello, World'}
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
@@ -28,7 +28,7 @@ def predict_banknote(data:BankNote):
     data = data.dict()
     SK_ID_CURR = data['SK_ID_CURR']
    # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
-    prediction = classifier.predict(df).tolist()[0]
+    prediction = classifier.predict(df[df["SK_ID_CURR"]== SK_ID_CURR]).tolist()
     return prediction
 
 # 5. Run the API with uvicorn
