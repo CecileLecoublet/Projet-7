@@ -65,29 +65,29 @@ def main(val, df):
         st.error("Le client est à risque")
     return rep
 
-def fc_global(rep) :
-    prov = pd.read_csv("X_train.csv")
-    X_test = pd.read_csv("X_test.csv")
-    col = prov.loc[ : , prov.columns != 'TARGET'].columns
-    X = prov[col]
-    y = prov["TARGET"]
-    lgbc = LGBMClassifier(**{'n_estimators': 250, 'objective': 'binary', 'class_weight':'balanced', 'random_state':100})
-    lgbc.fit(X, y)
-    y_pred = lgbc.predict(X_test)
-    # get importance
-    importance = lgbc.feature_importances_
-    # plot feature importance
-    fig = px.bar([x for x in range(len(importance))], x= X.columns, y = importance)
-    st.plotly_chart(fig, use_container_width=True)
-    explainer = shap.TreeExplainer(lgbc)
-    shap_values = explainer.shap_values(X_test)
-    if rep == 0 :
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        fig_1 = shap.summary_plot(shap_values[0], X_test, plot_type="bar")
-    else :
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        fig_1 = shap.summary_plot(shap_values[1], X_test, plot_type="bar")
-    st.pyplot(fig_1)
+# def fc_global(rep) :
+#     prov = pd.read_csv("X_train.csv")
+#     X_test = pd.read_csv("X_test.csv")
+#     col = prov.loc[ : , prov.columns != 'TARGET'].columns
+#     X = prov[col]
+#     y = prov["TARGET"]
+#     lgbc = LGBMClassifier(**{'n_estimators': 250, 'objective': 'binary', 'class_weight':'balanced', 'random_state':100})
+#     lgbc.fit(X, y)
+#     y_pred = lgbc.predict(X_test)
+#     # get importance
+#     importance = lgbc.feature_importances_
+#     # plot feature importance
+#     fig = px.bar([x for x in range(len(importance))], x= X.columns, y = importance)
+#     st.plotly_chart(fig, use_container_width=True)
+#     explainer = shap.TreeExplainer(lgbc)
+#     shap_values = explainer.shap_values(X_test)
+#     if rep == 0 :
+#         st.set_option('deprecation.showPyplotGlobalUse', False)
+#         fig_1 = shap.summary_plot(shap_values[0], X_test, plot_type="bar")
+#     else :
+#         st.set_option('deprecation.showPyplotGlobalUse', False)
+#         fig_1 = shap.summary_plot(shap_values[1], X_test, plot_type="bar")
+#     st.pyplot(fig_1)
 
 if __name__ == '__main__':
     df = read_and_cache_csv("X_test.csv")
@@ -112,4 +112,4 @@ if __name__ == '__main__':
     graphique(data)
     quatrieme_chapitre(data, val)
     st.markdown("## Cinquième chapitre : Features gloabl et features local")
-    fc_global(rep)
+    # fc_global(rep)
