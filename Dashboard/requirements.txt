@@ -1,7 +1,6 @@
 requests
 streamlit
 pandas
-json
 fastapi
 plotly
 scikit-learn
