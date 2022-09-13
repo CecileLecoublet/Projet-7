@@ -6,3 +6,6 @@ fastapi
 plotly.express
 lightgbm
 shap
+python-multipart
+uvicorn
+gunicorn
