@@ -1,13 +1,6 @@
-requests
-streamlit
-pandas
-json
-fastapi
-plotly
-scikit-learn
-lightgbm
-shap
-python-multipart
 uvicorn
 gunicorn
-json
+fastapi 
+pandas
+lightgbm 
+python-multipart
