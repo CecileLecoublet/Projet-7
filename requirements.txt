@@ -10,3 +10,4 @@ shap
 python-multipart
 uvicorn
 gunicorn
+json
