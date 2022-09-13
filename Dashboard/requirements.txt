@@ -3,7 +3,8 @@ streamlit
 pandas
 json
 fastapi
-plotly.express
+plotly
+scikit-learn
 lightgbm
 shap
 python-multipart
