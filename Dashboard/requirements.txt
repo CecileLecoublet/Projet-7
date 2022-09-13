@@ -1,0 +1,8 @@
+requests
+streamlit
+pandas
+json
+fastapi
+plotly.express
+lightgbm
+shap
