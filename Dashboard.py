@@ -46,11 +46,9 @@ def main(val, df):
 
     df = df.iloc[val]
 
-    df1 = df[["AMT_CREDIT", "AMT_ANNUITY", "AMT_GOODS_PRICE", "REGION_POPULATION_RELATIVE", "DAYS_BIRTH", 
-                "DAYS_ID_PUBLISH", "OCCUPATION_TYPE", "WEEKDAY_APPR_PROCESS_START", "HOUR_APPR_PROCESS_START",
-                "EXT_SOURCE_1", "EXT_SOURCE_2", "EXT_SOURCE_3", "AMT_REQ_CREDIT_BUREAU_YEAR"]]
+    client = df["SK_ID_CURR"][val]
 
-    df_json = df1.to_json(orient='records')
+    df_json = client.to_json(orient='records')
     payload = df_json.strip("[]")
 
     headers = {
