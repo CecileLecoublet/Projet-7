@@ -6,7 +6,7 @@ RUN git config --global http.sslVerify false
 # Authorize SSH Host
 RUN mkdir -p /root/.ssh
 RUN chmod 0700 /root/.ssh
-RUN ssh-keyscan github.com > /root/.ssh/known_hosts
+RUN ssh-keyscan github.com > /home/appuser/.ssh/id_github
 # Updating conda
 RUN conda update -n base -c defaults conda
 WORKDIR /app
