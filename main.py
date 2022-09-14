@@ -25,7 +25,7 @@ async def predict_banknote(data:float):
     SK_ID_CURR = data
    # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
     prediction = classifier.predict(df[df["SK_ID_CURR"]== SK_ID_CURR]).tolist()[0]
-    return {'prediction': prediction}
+    return prediction
 
 # 5. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
