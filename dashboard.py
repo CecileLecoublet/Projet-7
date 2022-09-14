@@ -45,8 +45,8 @@ def quatrieme_chapitre(data, val):
 def main(val, df):
 
     df = df.iloc[val]
-
     client = df["SK_ID_CURR"][val]
+    st.write("client", df["SK_ID_CURR"].style.format("{:.16f}"))
 
     df_json = client.to_json(orient='records')
     payload = df_json.strip("[]")
@@ -54,7 +54,11 @@ def main(val, df):
     headers = {
         'Content-Type' : 'application/json'
     }
-    response = requests.post(f"http://127.0.0.1:8000/predict", data=payload)
+    url = "http://127.0.0.1:8000/predict?data="+payload
+    st.write(url)
+    st.write("http://127.0.0.1:8000/predict?data=-1.7333933683763834")
+    response = requests.post("http://127.0.0.1:8000/predict?data=-1.7333933683763834")
+    st.write(response.json())
 
     if response.json() == 0 :
         rep = 0
