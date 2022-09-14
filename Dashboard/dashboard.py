@@ -44,9 +44,7 @@ def quatrieme_chapitre(data, val):
 # Fonction qui fait un lien avec le FASTAPI
 def main(val, df):
 
-    df = df.iloc[val]
-
-    client = df["SK_ID_CURR"][val]
+    client = df["SK_ID_CURR"]
 
     df_json = client.to_json(orient='records')
     payload = df_json.strip("[]")
@@ -54,7 +52,9 @@ def main(val, df):
     headers = {
         'Content-Type' : 'application/json'
     }
-    response = requests.post(f"http://127.0.0.1:8000/predict", data=payload)
+    url = "http://127.0.0.1:8000/predict?data="+payload
+
+    response = requests.post(url)
 
     if response.json() == 0 :
         rep = 0
@@ -92,23 +92,23 @@ if __name__ == '__main__':
     df = read_and_cache_csv("X_test.csv")
 
     st.markdown("## Premier chapitre : Statut du crédit client")
-    choix = st.selectbox("Choix du client", tab["SK_ID_CURR"])
-    data = tab[tab["SK_ID_CURR"] == choix]
-    val = tab[tab["SK_ID_CURR"] == choix].index
-    rep = main(val, df)
+    choix = st.selectbox("Choix du client", df["SK_ID_CURR"])
+    data = df[df["SK_ID_CURR"] == choix]
+    tab = tab[tab["SK_ID_CURR"] == choix]
+    rep = main(choix, data)
 
     st.markdown("## Deuxième chapitre : Statut du client")
-    age = data['DAYS_BIRTH'].round(0)
+    age = tab['DAYS_BIRTH'].round(0)
     st.write("L'âge du client est : ", age)
     statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
             'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
             'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
     for i in range(0, len(statut), 1):
-        if data["OCCUPATION_TYPE"].values == i:
+        if tab["OCCUPATION_TYPE"].values == i:
             st.write("Le client travaille dans :", statut[i])
 
     st.markdown("## Troisième chapitre : Information sur le crédit")
-    graphique(data)
-    quatrieme_chapitre(data, val)
+    graphique(tab)
+    quatrieme_chapitre(tab, choix)
     st.markdown("## Cinquième chapitre : Features global et features local")
     fc_global(rep)
