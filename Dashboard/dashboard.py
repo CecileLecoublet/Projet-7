@@ -1,7 +1,6 @@
 import requests
 import streamlit as st
 import pandas as pd
-import main
 import json
 from fastapi.encoders import jsonable_encoder
 import plotly.express as px
@@ -17,7 +16,7 @@ st.title('Dashboard : Prédiction de crédit')
 # Ouverture des fichiers
 read_and_cache_csv = st.cache(pd.read_csv)
 
-url = "http://127.0.0.1:8000/predict"
+url = f"http://127.0.0.1:8000/predict"
 
 def graphique(data):
     prov = data[["AMT_INCOME_TOTAL", "AMT_CREDIT", "AMT_ANNUITY", "AMT_GOODS_PRICE"]].copy()
@@ -55,9 +54,8 @@ def main(val, df):
     headers = {
         'Content-Type' : 'application/json'
     }
-    response = requests.post(url, headers = headers, data=payload)
-    st.write(response)
-    st.write("Reponse")
+    response = requests.post(f"http://127.0.0.1:8000/predict", data=payload)
+
     if response.json() == 0 :
         rep = 0
         st.success("Le client n'est pas à risque")
