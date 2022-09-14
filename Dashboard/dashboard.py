@@ -1,6 +1,7 @@
 import requests
 import streamlit as st
 import pandas as pd
+import main
 import json
 from fastapi.encoders import jsonable_encoder
 import plotly.express as px
@@ -55,6 +56,8 @@ def main(val, df):
         'Content-Type' : 'application/json'
     }
     response = requests.post(url, headers = headers, data=payload)
+    st.write(response)
+    st.write("Reponse")
     if response.json() == 0 :
         rep = 0
         st.success("Le client n'est pas à risque")
