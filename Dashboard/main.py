@@ -25,7 +25,7 @@ def predict_banknote(data:BankNote):
     data = data.dict()
     SK_ID_CURR = data['SK_ID_CURR']
    # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
-    prediction = classifier.predict(df[df["SK_ID_CURR"]== SK_ID_CURR]).tolist()[0]
+    prediction = classifier.predict(df).tolist()[0]
     return prediction
 
 # 5. Run the API with uvicorn
