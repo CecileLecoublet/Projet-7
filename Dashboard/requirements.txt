@@ -1,0 +1,11 @@
+requests
+streamlit
+pandas
+fastapi
+plotly
+scikit-learn
+lightgbm
+shap
+python-multipart
+uvicorn
+gunicorn
