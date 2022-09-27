@@ -1,6 +1,0 @@
-uvicorn
-gunicorn
-fastapi 
-pandas 
-python-multipart
-torchvision
