@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from BankNotes import BankNote
 import pickle
 import pandas as pd
+import shap
 
 # 2. Create the app object
 app = FastAPI()
@@ -23,9 +24,15 @@ def index():
 @app.post('/predict')
 async def predict_banknote(data:float):
     SK_ID_CURR = data
-   # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
     prediction = classifier.predict(df[df["SK_ID_CURR"]== SK_ID_CURR]).tolist()[0]
     return prediction
+
+# @app.put('/model/{client}')
+# async def predict_banknote(data:float):
+#     SK_ID_CURR = data
+#     explainer = shap.TreeExplainer(classifier)
+#     shap_values = explainer.shap_values(df[df["SK_ID_CURR"]== SK_ID_CURR])
+#     return shap_values
 
 # 5. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
