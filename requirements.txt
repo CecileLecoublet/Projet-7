@@ -4,4 +4,3 @@ fastapi
 pandas
 lightgbm 
 python-multipart
-requests==0.11.1
