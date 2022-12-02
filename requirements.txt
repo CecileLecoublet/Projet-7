@@ -4,3 +4,4 @@ fastapi
 pandas
 lightgbm 
 python-multipart
+pickle
