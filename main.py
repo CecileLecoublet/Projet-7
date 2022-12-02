@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from BankNotes import BankNote
 import pickle
 import pandas as pd
-from sklearn.datasets import make_classification
 
 # 2. Create the app object
 app = FastAPI()
