@@ -8,7 +8,7 @@ from sklearn.datasets import make_classification
 
 # 2. Create the app object
 app = FastAPI()
-pickle_in = open("model copy.pkl","rb")
+pickle_in = open("model.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 # Ouverture des fichiers
