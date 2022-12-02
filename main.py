@@ -7,7 +7,7 @@ import pandas as pd
 
 # 2. Create the app object
 app = FastAPI()
-pickle_in = open("model.pkl","rb")
+pickle_in = open("model copy.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 # Ouverture des fichiers
