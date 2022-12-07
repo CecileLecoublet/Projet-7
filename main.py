@@ -2,7 +2,7 @@
 import uvicorn
 from fastapi import FastAPI
 from BankNotes import BankNote
-import pickle
+import pickle5 as pickle
 import pandas as pd
 
 # 2. Create the app object
