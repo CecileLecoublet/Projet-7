@@ -64,19 +64,19 @@ def main(val, df):
         st.error("Le client est à risque")
     return rep
 
-def fc_global(rep) :
-    prov = pd.read_csv("X_train.csv")
-    X_test = pd.read_csv("X_test.csv")
-    col = prov.loc[ : , prov.columns != 'TARGET'].columns
-    X = prov[col]
-    y = prov["TARGET"]
-    lgbc = LGBMClassifier(**{'n_estimators': 250, 'objective': 'binary', 'class_weight':'balanced', 'random_state':100})
-    lgbc.fit(X, y)
-    # get importance
-    importance = lgbc.feature_importances_
-    # plot feature importance
-    fig = px.bar([x for x in range(len(importance))], x= X.columns, y = importance)
-    st.plotly_chart(fig, use_container_width=True)
+# def fc_global(rep) :
+#     prov = pd.read_csv("X_train.csv")
+#     X_test = pd.read_csv("X_test.csv")
+#     col = prov.loc[ : , prov.columns != 'TARGET'].columns
+#     X = prov[col]
+#     y = prov["TARGET"]
+#     lgbc = LGBMClassifier(**{'n_estimators': 250, 'objective': 'binary', 'class_weight':'balanced', 'random_state':100})
+#     lgbc.fit(X, y)
+#     # get importance
+#     importance = lgbc.feature_importances_
+#     # plot feature importance
+#     fig = px.bar([x for x in range(len(importance))], x= X.columns, y = importance)
+#     st.plotly_chart(fig, use_container_width=True)
     # explainer = shap.TreeExplainer(lgbc)
     # shap_values = explainer.shap_values(X_test)
     # if rep == 0 :
@@ -96,18 +96,18 @@ if __name__ == '__main__':
     tab = tab[tab["SK_ID_CURR"] == choix]
     rep = main(choix, data)
 
-    st.markdown("## Deuxième chapitre : Statut du client")
-    age = tab['DAYS_BIRTH'].round(0)
-    st.write("L'âge du client est : ", age)
-    statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
-            'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
-            'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
-    for i in range(0, len(statut), 1):
-        if tab["OCCUPATION_TYPE"].values == i:
-            st.write("Le client travaille dans :", statut[i])
+    # st.markdown("## Deuxième chapitre : Statut du client")
+    # age = tab['DAYS_BIRTH'].round(0)
+    # st.write("L'âge du client est : ", age)
+    # statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
+    #         'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
+    #         'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
+    # for i in range(0, len(statut), 1):
+    #     if tab["OCCUPATION_TYPE"].values == i:
+    #         st.write("Le client travaille dans :", statut[i])
 
-    st.markdown("## Troisième chapitre : Information sur le crédit")
-    graphique(tab)
-    quatrieme_chapitre(tab, choix)
-    st.markdown("## Cinquième chapitre : Features global et features local")
-    fc_global(rep)
+    # st.markdown("## Troisième chapitre : Information sur le crédit")
+    # graphique(tab)
+    # quatrieme_chapitre(tab, choix)
+    # st.markdown("## Cinquième chapitre : Features global et features local")
+    # fc_global(rep)
