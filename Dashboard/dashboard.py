@@ -52,7 +52,7 @@ def main(val, df):
     headers = {
         'Content-Type' : 'application/json'
     }
-    url = "https://p8credit.herokuapp.com/predict?data="+payload
+    url = "http://127.0.0.1:8000/predict?data="+payload
 
     response = requests.post(url)
 
