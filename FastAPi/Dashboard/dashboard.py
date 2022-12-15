@@ -96,18 +96,18 @@ if __name__ == '__main__':
     tab = tab[tab["SK_ID_CURR"] == choix]
     rep = main(choix, data)
 
-    # st.markdown("## Deuxième chapitre : Statut du client")
-    # age = tab['DAYS_BIRTH'].round(0)
-    # st.write("L'âge du client est : ", age)
-    # statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
-    #         'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
-    #         'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
-    # for i in range(0, len(statut), 1):
-    #     if tab["OCCUPATION_TYPE"].values == i:
-    #         st.write("Le client travaille dans :", statut[i])
+    st.markdown("## Deuxième chapitre : Statut du client")
+    age = tab['DAYS_BIRTH'].round(0)
+    st.write("L'âge du client est : ", age)
+    statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
+            'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
+            'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
+    for i in range(0, len(statut), 1):
+        if tab["OCCUPATION_TYPE"].values == i:
+            st.write("Le client travaille dans :", statut[i])
 
-    # st.markdown("## Troisième chapitre : Information sur le crédit")
-    # graphique(tab)
-    # quatrieme_chapitre(tab, choix)
-    # st.markdown("## Cinquième chapitre : Features global et features local")
+    st.markdown("## Troisième chapitre : Information sur le crédit")
+    graphique(tab)
+    quatrieme_chapitre(tab, choix)
+    st.markdown("## Cinquième chapitre : Features global et features local")
     # fc_global(rep)
