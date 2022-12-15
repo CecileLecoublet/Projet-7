@@ -8,6 +8,8 @@ from lightgbm import LGBMClassifier
 import shap
 shap.initjs()
 
+tab = pd.read_csv("../data/X_test.csv")
+
 # Titre du document
 st.title('Dashboard : Prédiction de crédit')
 
