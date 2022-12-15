@@ -7,11 +7,11 @@ import pandas as pd
 
 # 2. Create the app object
 app = FastAPI()
-pickle_in = open("model copy.pkl","rb")
+pickle_in = open("mlflow_model/model.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 # Ouverture des fichiers
-df = pd.read_csv("X_test.csv")
+df = pd.read_csv("../data/X_test.csv")
 
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
