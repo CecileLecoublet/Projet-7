@@ -8,7 +8,7 @@ from lightgbm import LGBMClassifier
 import shap
 shap.initjs()
 
-tab = pd.read_csv("C:/Users/lecou/Projet 7/Projet 7/data/X_test.csv")
+tab = pd.read_csv("../../data/X_test.csv")
 
 # Titre du document
 st.title('Dashboard : Prédiction de crédit')
@@ -88,7 +88,7 @@ def main(val, df):
     # st.pyplot(fig_1)
 
 if __name__ == '__main__':
-    df = read_and_cache_csv("C:/Users/lecou/Projet 7/Projet 7/data/X_test.csv")
+    df = read_and_cache_csv("../../data/X_test.csv")
 
     st.markdown("## Premier chapitre : Statut du crédit client")
     choix = st.selectbox("Choix du client", df["SK_ID_CURR"])
