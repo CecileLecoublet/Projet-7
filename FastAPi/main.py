@@ -1,6 +1,6 @@
 # 1. Library imports
-import uvicorn
 from fastapi import FastAPI
+import uvicorn
 from BankNotes import BankNote
 import pickle
 import pandas as pd
