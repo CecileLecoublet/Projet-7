@@ -17,7 +17,7 @@ df = pd.read_csv("../data/X_test_scaled.csv")
 def index():
     return {'message': 'Hello, World'}
 
-# 3. Expose the prediction functionality, make a prediction from the passed
+# 4. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
 @app.post('/predict')
 async def predict_banknote(data:float):
