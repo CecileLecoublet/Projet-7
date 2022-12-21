@@ -6,4 +6,4 @@ EXPOSE 5000
 
 COPY ./FastAPI /FastAPI
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "FastAPI.main:app", "--host", "0.0.0.0", "--port", "5000"]
