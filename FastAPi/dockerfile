@@ -1,13 +1,6 @@
-FROM python:3.9
+FROM tiangolo/uvicorn-gunicorn:python3.9
 
-WORKDIR /app
+COPY requirements.txt /FastAPI/requirements.txt
+RUN pip install --no-cache-dir -r /FastAPI/requirements.txt
 
-COPY app/requirements.txt /app//requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-# 
-COPY app/main.py /app/
-
-# 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+COPY ./app /app
