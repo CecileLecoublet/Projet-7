@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir --upgrade -r /FastAPI/requirements.txt
 
 COPY ./FastAPI ./FastAPI
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "FastAPI.main:app", "--host", "0.0.0.0", "--port", "80"]
