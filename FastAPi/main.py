@@ -1,12 +1,11 @@
 # 1. Library imports
-from deta import App
 from fastapi import FastAPI
 from BankNotes import BankNote
 import pickle
 import pandas as pd
 
 # 2. Create the app object
-app = App(FastAPI())
+app = FastAPI()
 pickle_in = open("mlflow_model/model.pkl","rb")
 classifier=pickle.load(pickle_in)
 
