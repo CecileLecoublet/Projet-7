@@ -1,12 +1,13 @@
 import requests
 import streamlit as st
+import numpy as np
 import pandas as pd
 import json
 from fastapi.encoders import jsonable_encoder
 import plotly.express as px
 from lightgbm import LGBMClassifier
-import shap
-shap.initjs()
+import lime
+from lime import lime_tabular
 
 tab = pd.read_csv("../../data/X_test.csv")
 
@@ -41,6 +42,15 @@ def quatrieme_chapitre(data, val):
     bar_chart.update_layout(yaxis=dict(range=[0,1]))
     st.write(bar_chart)
 
+
+def fc_global(choix) :
+    explainer = lime_tabular.LimeTabularExplainer(
+        training_data=np.array(X_train_scaled),
+        feature_names=X_train_scaled.columns,
+        class_names=['Positif', 'Negatif'],
+        mode='classification')
+    
+
 # Fonction qui fait un lien avec le FASTAPI
 def main(val, df):
 
@@ -64,31 +74,9 @@ def main(val, df):
         st.error("Le client est à risque")
     return rep
 
-# def fc_global(rep) :
-#     prov = pd.read_csv("X_train.csv")
-#     X_test = pd.read_csv("X_test.csv")
-#     col = prov.loc[ : , prov.columns != 'TARGET'].columns
-#     X = prov[col]
-#     y = prov["TARGET"]
-#     lgbc = LGBMClassifier(**{'n_estimators': 250, 'objective': 'binary', 'class_weight':'balanced', 'random_state':100})
-#     lgbc.fit(X, y)
-#     # get importance
-#     importance = lgbc.feature_importances_
-#     # plot feature importance
-#     fig = px.bar([x for x in range(len(importance))], x= X.columns, y = importance)
-#     st.plotly_chart(fig, use_container_width=True)
-    # explainer = shap.TreeExplainer(lgbc)
-    # shap_values = explainer.shap_values(X_test)
-    # if rep == 0 :
-    #     st.set_option('deprecation.showPyplotGlobalUse', False)
-    #     fig_1 = shap.summary_plot(shap_values[0], X_test, plot_type="bar")
-    # else :
-    #     st.set_option('deprecation.showPyplotGlobalUse', False)
-    #     fig_1 = shap.summary_plot(shap_values[1], X_test, plot_type="bar")
-    # st.pyplot(fig_1)
-
 if __name__ == '__main__':
     df = read_and_cache_csv("../../data/X_test.csv")
+    X_train_scaled = read_and_cache_csv("../../data/X_train_scaled.csv")
 
     st.markdown("## Premier chapitre : Statut du crédit client")
     choix = st.selectbox("Choix du client", df["SK_ID_CURR"])
@@ -110,4 +98,4 @@ if __name__ == '__main__':
     graphique(tab)
     quatrieme_chapitre(tab, choix)
     st.markdown("## Cinquième chapitre : Features global et features local")
-    # fc_global(rep)
+    fc_global(choix)
