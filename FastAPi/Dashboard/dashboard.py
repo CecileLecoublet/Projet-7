@@ -1,15 +1,21 @@
 import requests
 import streamlit as st
+from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
-import json
-from fastapi.encoders import jsonable_encoder
 import plotly.express as px
-from lightgbm import LGBMClassifier
 import lime
 from lime import lime_tabular
+import pickle
+st.set_option('deprecation.showPyplotGlobalUse', False)
+showPyplotGlobalUse = False
 
 tab = pd.read_csv("../../data/X_test.csv")
+
+def load_model():
+    pickle_in = open("../mlflow_model/model.pkl","rb")
+    clf = pickle.load(pickle_in)
+    return clf
 
 # Titre du document
 st.title('Dashboard : Prédiction de crédit')
@@ -43,16 +49,27 @@ def quatrieme_chapitre(data, val):
     st.write(bar_chart)
 
 
-def fc_global(choix) :
+def fc_global(X_test_scaled) :
+
     explainer = lime_tabular.LimeTabularExplainer(
         training_data=np.array(X_train_scaled),
         feature_names=X_train_scaled.columns,
         class_names=['Positif', 'Negatif'],
         mode='classification')
-    
+
+    index = X_test_scaled[X_test_scaled["SK_ID_CURR"] == choix].index
+    exp = explainer.explain_instance(
+        data_row = X_test_scaled.iloc[index[0]], 
+        predict_fn = load_model().predict_proba)
+
+    exp.as_pyplot_figure()
+    st.pyplot()
+    plt.clf()
+    exp.show_in_notebook(show_table=True)
+
 
 # Fonction qui fait un lien avec le FASTAPI
-def main(val, df):
+def main(df):
 
     client = df["SK_ID_CURR"]
 
@@ -75,27 +92,27 @@ def main(val, df):
     return rep
 
 if __name__ == '__main__':
-    df = read_and_cache_csv("../../data/X_test.csv")
+    df = read_and_cache_csv("../../data/X_test_scaled.csv")
     X_train_scaled = read_and_cache_csv("../../data/X_train_scaled.csv")
 
     st.markdown("## Premier chapitre : Statut du crédit client")
     choix = st.selectbox("Choix du client", df["SK_ID_CURR"])
     data = df[df["SK_ID_CURR"] == choix]
-    tab = tab[tab["SK_ID_CURR"] == choix]
-    rep = main(choix, data)
+    tab_1 = tab[tab["SK_ID_CURR"] == choix]
+    rep = main(data)
 
     st.markdown("## Deuxième chapitre : Statut du client")
-    age = tab['DAYS_BIRTH'].round(0)
-    st.write("L'âge du client est : ", age)
+    age = tab_1['DAYS_BIRTH'].round(0)
+    st.write("L'âge du client est : ", age.values[0])
     statut = ['Laborers', 'Core staff', 'Accountants', 'Managers', 'Drivers', 'Sales staff', 'Cleaning staff', 'Cooking staff',
             'Private service staff', 'Medicine staff', 'Security staff', 'High skill tech staff', 'Waiters/barmen staff',
             'Low-skill Laborers', 'Realty agents', 'Secretaries', 'IT staff', 'HR staff']
     for i in range(0, len(statut), 1):
-        if tab["OCCUPATION_TYPE"].values == i:
+        if tab_1["OCCUPATION_TYPE"].values == i:
             st.write("Le client travaille dans :", statut[i])
 
     st.markdown("## Troisième chapitre : Information sur le crédit")
-    graphique(tab)
-    quatrieme_chapitre(tab, choix)
+    graphique(tab_1)
+    quatrieme_chapitre(tab_1, choix)
     st.markdown("## Cinquième chapitre : Features global et features local")
-    fc_global(choix)
+    fc_global(df)
