@@ -16,7 +16,7 @@ def ouverture_data() :
     X_train_scaled = read_and_cache_csv("../../data/X_train_scaled.csv")
     return tab, df, X_train_scaled
 
-# Choix du vient et dicision des data
+# Choix du vient et division des data
 def choix_client():
     st.markdown("## Premier chapitre : Statut du crédit client")
     # Sélection du client et division des data
@@ -46,8 +46,10 @@ def client_api(df):
 
 # Appel de toute les fonctions
 if __name__ == '__main__':
+
     # Titre du document
     st.title('Dashboard : Prédiction de crédit')
+
     # Ouverture des data
     tab, df, X_train_scaled = ouverture_data()
 
