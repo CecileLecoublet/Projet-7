@@ -1,9 +1,6 @@
 import requests
 import streamlit as st
-from matplotlib import pyplot as plt
-import numpy as np
 import pandas as pd
-import plotly.express as px
 from Age_client import age_client
 from Statut_client import graphique
 from Note_ext import quatrieme_chapitre

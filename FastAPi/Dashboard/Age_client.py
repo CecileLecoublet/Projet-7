@@ -1,8 +1,4 @@
 import streamlit as st
-from matplotlib import pyplot as plt
-import numpy as np
-import pandas as pd
-import plotly.express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
 showPyplotGlobalUse = False
 
