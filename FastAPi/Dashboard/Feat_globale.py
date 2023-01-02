@@ -1,6 +1,7 @@
 import streamlit as st
 from matplotlib import pyplot as plt
 import numpy as np
+import pandas as pd
 import lime
 from lime import lime_tabular
 import pickle
@@ -34,3 +35,6 @@ def fc_global(X_test_scaled, X_train_scaled, choix) :
     st.pyplot()
     plt.clf()
     exp.show_in_notebook(show_table=True)
+    # Affichage du tableau
+    st.write(pd.DataFrame(exp.as_list()))
+    
