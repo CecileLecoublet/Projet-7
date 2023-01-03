@@ -2,8 +2,6 @@ FROM python:3.9
 
 RUN pip install fastapi uvicorn
 
-WORKDIR /FastAPI
-
 EXPOSE 80
 
 COPY ./FastAPI /FastAPI
