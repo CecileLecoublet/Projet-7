@@ -1,6 +1,6 @@
 FROM python:3.9
 
-RUN pip install --requirement /requirements.txt
+RUN pip install fastapi uvicorn pandas
 
 EXPOSE 8000
 

@@ -1,6 +1,6 @@
 # 1. Library imports
 from fastapi import FastAPI
-from BankNotes import BankNote
+#from BankNotes import BankNote
 import pickle
 import pandas as pd
 
