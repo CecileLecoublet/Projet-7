@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 #from BankNotes import BankNote
 import pickle
+import uvicorn
 import pandas as pd
 
 # 2. Create the app object
@@ -27,5 +28,8 @@ async def predict_banknote(data:float):
 
 # # 5. Run the API with uvicorn
 # #    Will run on http://127.0.0.1:8000
-# if __name__ == '__main__':
-#     uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=443, debug=True, reload=True,  reload_dirs = ["html_files"],
+                ssl_keyfile="./key.pem", 
+                ssl_certfile="./cert.pem"
+                )

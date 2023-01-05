@@ -1,9 +1,11 @@
 FROM python:3.9
 
-RUN pip install fastapi uvicorn pandas
+COPY requirements.txt /requirements.txt
 
-EXPOSE 8000
+RUN pip install -r requirements.txt
+
+EXPOSE 80
 
 COPY ./FastAPI /FastAPI
 
-CMD ["uvicorn", "FastAPI.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+CMD ["uvicorn", "FastAPI.main:app", "--host=0.0.0.0" , "--reload" , "--port", "80"]
