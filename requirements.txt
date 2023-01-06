@@ -6,3 +6,4 @@ lightgbm
 python-multipart
 plotly.express
 matplotlib
+pyplot
