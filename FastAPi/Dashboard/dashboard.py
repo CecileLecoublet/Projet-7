@@ -5,6 +5,7 @@ from Age_client import age_client
 from Statut_client import graphique
 from Note_ext import quatrieme_chapitre
 from Feat_globale import load_model, fc_global
+import plotly.express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
 showPyplotGlobalUse = False
 
