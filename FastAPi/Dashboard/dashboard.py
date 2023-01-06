@@ -13,10 +13,10 @@ showPyplotGlobalUse = False
 
 # Ouverture des fichiers
 def ouverture_data() :
-    tab = pd.read_csv("../../data/X_test.csv")
+    tab = pd.read_csv("X_test.csv")
     read_and_cache_csv = st.cache(pd.read_csv)
-    df = read_and_cache_csv("../../data/X_test_scaled.csv")
-    X_train_scaled = read_and_cache_csv("../../data/X_train_scaled.csv")
+    df = read_and_cache_csv("X_test_scaled.csv")
+    X_train_scaled = read_and_cache_csv("X_train_scaled.csv")
     return tab, df, X_train_scaled
 
 # Choix du vient et division des data
