@@ -6,6 +6,7 @@ from Statut_client import graphique
 from Note_ext import quatrieme_chapitre
 from Feat_globale import load_model, fc_global
 import plotly.express as px
+from matplotlib import pyplot as plt
 st.set_option('deprecation.showPyplotGlobalUse', False)
 showPyplotGlobalUse = False
 
