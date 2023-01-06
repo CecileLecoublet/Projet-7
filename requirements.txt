@@ -6,4 +6,5 @@ lightgbm
 python-multipart
 plotly.express
 matplotlib
+lime_tabular
 lime

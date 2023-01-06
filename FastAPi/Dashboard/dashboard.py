@@ -8,6 +8,7 @@ from Feat_globale import load_model, fc_global
 import plotly.express as px
 from matplotlib import pyplot as plt
 import lime
+from lime import lime_tabular
 st.set_option('deprecation.showPyplotGlobalUse', False)
 showPyplotGlobalUse = False
 
