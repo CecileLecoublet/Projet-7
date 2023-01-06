@@ -5,3 +5,4 @@ pandas
 lightgbm 
 python-multipart
 plotly.express
+matplotlib
