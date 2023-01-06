@@ -26,7 +26,8 @@ async def predict_banknote(data:float):
     prediction = classifier.predict(df[df["SK_ID_CURR"]== SK_ID_CURR]).tolist()[0]
     return prediction
 
-# # 5. Run the API with uvicorn
-# #    Will run on http://127.0.0.1:8000
+# 5. Run the API with uvicorn
+#    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=80, debug=True)
+    uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
+
