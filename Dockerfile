@@ -8,4 +8,4 @@ EXPOSE 80
 
 COPY ./FastAPI /FastAPI
 
-CMD ["uvicorn", "FastAPI.main:app", "--host=0.0.0.0" , "--reload" , "--port", "80"]
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "80"]
