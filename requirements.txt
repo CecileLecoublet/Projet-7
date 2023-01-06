@@ -7,4 +7,3 @@ python-multipart
 plotly.express
 matplotlib
 lime
-lime_tabular
